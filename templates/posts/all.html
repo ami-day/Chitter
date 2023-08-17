@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>All Posts</title>
+  </head>
+  <body>
+    {% for post in posts %}
+    <h1>Post: {{post.message}}</h1>
+    <p>
+        Author: {{post.user_id}}
+        Posted: {{post.time}}
+    </p>
+    {% endfor %}
+
+  </body>
+</html>

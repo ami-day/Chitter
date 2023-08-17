@@ -12,12 +12,23 @@ def test_get_emoji(web_client):
     assert response.status_code == 200
     assert response.data.decode("utf-8") == ":)"
 
-def test_create_user(page, test_web_address, db_connection):
+def test_get_users(page, test_web_address, db_connection):
     db_connection.seed('seeds/chitter_solo_project.sql')
 
     page.goto(f'http://{test_web_address}/users')
 
     h1_tags = page.locator("h1").all()
 
-    expect(h1_tags[0]).to_have_text("User: Ami Day")
-     
+    expect(h1_tags[0]).to_have_text("User: Sam Morgan")
+
+def test_get_posts(page, test_web_address, db_connection):
+    db_connection.seed('seeds/chitter_solo_project.sql')
+
+    page.goto(f'http://{test_web_address}/posts')
+
+    h1_tags = page.locator("h1").all()
+
+    expect(h1_tags[0]).to_have_text("Post: Hello World")
+
+    
+

@@ -1,6 +1,7 @@
 import os
 from lib.user import *
 from lib.user_repository import *
+from lib.post_repository import *
 from flask import Flask, request, render_template, redirect
 from lib.database_connection import get_flask_database_connection
 
@@ -21,9 +22,22 @@ def get_users():
     users = repository.all()
     return render_template("users/all.html", users=users)
 
+@app.route('/posts')
+def get_posts():
+    connection = get_flask_database_connection(app)
+    p_repository = PostRepository(connection)
+    u_repository = UserRepository(connection)
+    posts = p_repository.all()
+    users = u_repository.all()
+    return render_template("posts/all.html", posts=posts, users=users)
+
 @app.route('/users/new')
 def get_new_user():
     return render_template("users/index.html")
+
+@app.route('/posts/new')
+def get_new_post():
+    return render_template("posts/new.html")
 
 @app.route('/users/<id>')
 def get_user_by_id(id):
@@ -31,6 +45,13 @@ def get_user_by_id(id):
     repository = UserRepository(connection)
     user = repository.find_by_id(id)
     return render_template('users/get_by_id.html',user=user)
+
+@app.route('/posts/<id>')
+def get_post_by_id(id):
+    connection = get_flask_database_connection(app)
+    repository = PostRepository(connection)
+    post = repository.find_by_id(id)
+    return render_template('posts/get_by_id.html',post=post)
 
 @app.route('/users', methods=["POST"])
 def create_user():
@@ -43,6 +64,17 @@ def create_user():
     user = User(name_name, username, user_email, user_password)
     repository.create(user)
     return redirect(f"/users/{user.id}")
+
+@app.route('/posts', methods=["POST"])
+def create_post():
+    connection = get_flask_database_connection(app)
+    repository = PostRepository(connection)
+    message = request.form['message']
+    posted = request.form['time']
+    author = request.form['user_id']
+    post = Post(message, posted, author)
+    repository.create(post)
+    return redirect(f"/posts/{post.id}")
 
 # This imports some more example routes for you to see how they work
 # You can delete these lines if you don't need them.
