@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Users</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>New User</h1>
+    <!-- This creates a form that will submit to POST /books -->
+    <form action="/users" method="post">
+
+      <p>
+        <!-- These `label` tags are important for accessibility -->
+        <label for="user_name">User Name</label>
+
+        <!-- The `type` attribute says what kind of field this is -->
+        <!-- The `name` attribute says what parameter name should be sent to the server -->
+        <!-- The `id` field here is used to link it to the `for` tag in the label -->
+        <input type="text" name="user_name" id="user_name">
+      </p>
+      <p>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username">
+      </p>
+      <p>
+        <label for="user_email">User Email</label>
+        <input type="text" name="user_email" id="user_email">
+      </p>
+      <p>
+        <label for="user_password">User Password</label>
+        <input type="text" name="user_password" id="user_password">
+      </p>
+      <p>
+        <!-- `type` is submit here, to indicate it is a button -->
+        <!-- `value` is used as the button's text -->
+        <input type="submit" value="Create User">
+      </p>
+    </form>
+  </body>
+</html>

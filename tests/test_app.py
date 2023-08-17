@@ -2,6 +2,7 @@ from lib.post import *
 from lib.post_repository import PostRepository
 from lib.user import *
 from lib.user_repository import UserRepository
+from playwright.sync_api import Page, expect
 
 """
 GET /emoji
@@ -11,29 +12,12 @@ def test_get_emoji(web_client):
     assert response.status_code == 200
     assert response.data.decode("utf-8") == ":)"
 
-def test_post_message(db_connection, web_client):
-    db_connection.seed("seeds/chitter_solo_project.sql")
-    response = web_client.post("/posts", data={'title':'Voyage','release_year': 2022, 'artist_id': 2})
+def test_create_user(page, test_web_address, db_connection):
+    db_connection.seed('seeds/chitter_solo_project.sql')
 
-    assert response.status_code == 200
+    page.goto(f'http://{test_web_address}/users')
 
-    response = web_client.get("/posts")
+    h1_tags = page.locator("h1").all()
 
-    assert response.status_code == 200
-    assert response.data.decode('utf-8') == "1, Voyage, 2022, 2"
-
-def test_get_posts(db_connection, web_client):
-     db_connection.seed("seeds/chitter_solo_project.sql")
-     response = web_client.get("/posts")
-     assert response.status_code == 200
-     assert response.data.decode('utf-8') == 'Pixies,ABBA,Taylor Swift,Nina Simone'
-
-def test_create_user(db_connection, web_client):
-    db_connection.seed("seeds/chitter_solo_project.sql")
-    response = web_client.post("/users?name=MassiveAttack&genre=Pop")
-    assert response.status_code == 200
-
-    response = web_client.get("/users")
-
-    assert response.status_code == 200
-    assert response.data.decode('utf-8') == 'Pixies,ABBA,Taylor Swift,Nina Simone,Massive Attack'
+    expect(h1_tags[0]).to_have_text("User: Ami Day")
+     

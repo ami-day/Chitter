@@ -1,5 +1,8 @@
 import os
-from flask import Flask, request
+from lib.user import *
+from lib.user_repository import *
+from flask import Flask, request, render_template, redirect
+from lib.database_connection import get_flask_database_connection
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -10,6 +13,29 @@ app = Flask(__name__)
 @app.route('/emoji', methods=['GET'])
 def get_emoji():
     return ":)"
+
+@app.route('/users/new')
+def get_new_user():
+    return render_template("users/index.html")
+
+@app.route('/users/<id>')
+def get_user_by_id(id):
+    connection = get_flask_database_connection(app)
+    repository = UserRepository(connection)
+    user = repository.find_by_id(id)
+    return render_template('users/get_by_id.html',user=user)
+
+@app.route('/users', methods=["POST"])
+def create_user():
+    connection = get_flask_database_connection(app)
+    repository = UserRepository(connection)
+    name_name = request.form['user_name']
+    username = request.form['username']
+    user_email = request.form['user_email']
+    user_password = request.form['user_password']
+    user = User(name_name, username, user_email, user_password)
+    repository.create(user)
+    return redirect(f"/users/{user.id}")
 
 # This imports some more example routes for you to see how they work
 # You can delete these lines if you don't need them.

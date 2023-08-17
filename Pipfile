@@ -7,6 +7,9 @@ name = "pypi"
 pytest = "*"
 psycopg = "*"
 flask = "*"
+playwright = "*"
+pytest-playwright = "*"
+pytest-xprocess = "*"
 
 [dev-packages]
 autopep8 = "*"
