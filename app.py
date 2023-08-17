@@ -14,6 +14,13 @@ app = Flask(__name__)
 def get_emoji():
     return ":)"
 
+@app.route('/users')
+def get_users():
+    connection = get_flask_database_connection(app)
+    repository = UserRepository(connection)
+    users = repository.all()
+    return render_template("users/all.html", users=users)
+
 @app.route('/users/new')
 def get_new_user():
     return render_template("users/index.html")
