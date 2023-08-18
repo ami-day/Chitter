@@ -9,7 +9,7 @@ class PostRepository():
         posts = []
         for row in rows:
             item = Post(row['message'],row['time'],row['user_id'])
-        posts.append(item)
+            posts.append(item)
         return posts
     
     def find_by_id(self, id):

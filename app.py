@@ -4,6 +4,7 @@ from lib.user_repository import *
 from lib.post_repository import *
 from flask import Flask, request, render_template, redirect
 from lib.database_connection import get_flask_database_connection
+import sys
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -24,12 +25,13 @@ def get_users():
 
 @app.route('/posts')
 def get_posts():
+    print(f'aknsfklanklfnaklfnalfnaklnfalkflakanfkanflkanklgnalnalga')
     connection = get_flask_database_connection(app)
     p_repository = PostRepository(connection)
-    u_repository = UserRepository(connection)
     posts = p_repository.all()
-    users = u_repository.all()
-    return render_template("posts/all.html", posts=posts, users=users)
+    print(f'posts',file=sys.stderr)
+    print(posts,file=sys.stderr)
+    return render_template("posts/all.html", posts=posts)
 
 @app.route('/users/new')
 def get_new_user():

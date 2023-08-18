@@ -7,6 +7,7 @@ def test_get_all_posts(db_connection):
     repository = PostRepository(db_connection)
     
     posts = repository.all()
+    print(posts)
     
     assert posts == [Post('Hello World',date(2022,3,10),1)]
 
@@ -18,6 +19,6 @@ def test_create_post(db_connection):
     
     posts = repository.all()
     
-    assert posts == [Post('This is my second post',date(2022,3,3),1)]
+    assert posts == [Post('Hello World',date(2022,3,10),1),Post('This is my second post',date(2022,3,3),1)]
 
 

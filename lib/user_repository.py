@@ -1,4 +1,5 @@
 from lib.user import *
+import hashlib
 
 class UserRepository():
     def __init__(self, connection):
