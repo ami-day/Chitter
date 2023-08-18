@@ -1,0 +1,59 @@
+@font-face {
+    font-family: TwitterChirp;
+    src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff2) format('woff2');
+    src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff) format('woff');
+    font-weight: 400;
+    font-style: 'normal';
+    font-display: 'swap';
+  }
+  @font-face {
+    font-family: TwitterChirpExtendedHeavy;
+    src: url(https://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff2) format('woff2');
+    src: url(https://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff) format('woff');
+    font-weight: 800;
+    font-style: 'normal';
+    font-display: 'swap';
+  }
+
+  body {
+    background-color: #FEFBEA;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-family: TwitterChirp;
+    }
+
+    #header {
+        font-family: TwitterChirpExtendedHeavy;
+        font-size: 50px;
+        color: #1DA1F2;
+        margin-right: 800px;
+    }
+
+    #header-img{
+        height: 10vh;
+        width: 8vw;
+    }
+
+    .user_profile{
+        height: 50vh;
+        width: 40vw;
+    }
+
+    .profile {
+        display: inline;
+    }
+    
+    #main_section {
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        background-color:#1DA1F2;
+        height: 75vh;
+        width: 75vw;
+        border-radius: 30px;
+        overflow-y:scroll;
+        border: solid black;
+    }
