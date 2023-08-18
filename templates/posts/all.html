@@ -10,14 +10,18 @@
     <header id="header">chitter</header>
     </div>
     <div id="main_section">
+      <div id="posts"></div>
       {% for post in posts %}
+      <div class="post">
       <h1>Post: {{post.message}}</h1>
       <a href="/users/{{post.user_id}}">Author</a>
       <p>
           Posted: {{post.time}}
       </p>
+    </div>
       {% endfor %}
     </div>
+    
 
   </body>
 </html>

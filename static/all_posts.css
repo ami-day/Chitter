@@ -45,5 +45,14 @@ body {
     height: 75vh;
     width: 75vw;
     border-radius: 30px;
-}    
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+}
+
+.post {
+    height: 5px;
+    width: 5px;
+    color: white;
+    font-size: 10px;
+}
 
