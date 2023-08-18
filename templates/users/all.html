@@ -2,15 +2,31 @@
 <html lang="en">
   <head>
     <title>All Users</title>
+    <link rel="stylesheet" href="/static/all_users.css">
   </head>
   <body>
+    <div>
+      <img id="header-img" src="https://keystoliteracy.com/wp-content/uploads/2020/01/twitter-logo-transparent-15-768x576.png" />
+      <header id="header">chitter</header>
+      </div>
+    <div id="main_section">
     {% for user in users %}
-    <h1>User: {{user.user_name}}</h1>
+    <div class="profile">
+    <h1>{{user.user_name}}</h1>
+    <div class="profile_info">
     <p>
         Username: {{user.username}}
-        Email: {{user.user_email}}
     </p>
+    <p>
+      Email: {{user.user_email}}
+    </p>
+    </div>
+  <div class="profile_img">
+    <img class="user_profile" src="{{user.user_picture}}"/>
+    </div>
     {% endfor %}
+    </div>
+    <a href="/posts">Back to Posts</a>
 
   </body>
 </html>

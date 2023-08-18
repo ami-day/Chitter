@@ -59,7 +59,8 @@ def create_user():
     username = request.form['username']
     user_email = request.form['user_email']
     user_password = request.form['user_password']
-    user = User(name_name, username, user_email, user_password)
+    user_picture = request.form['user_picture']
+    user = User(name_name, username, user_email, user_password, user_picture)
     repository.create(user)
     return redirect(f"/posts")
 

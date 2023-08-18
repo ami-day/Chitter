@@ -19,7 +19,7 @@ def test_get_users(page, test_web_address, db_connection):
 
     h1_tags = page.locator("h1").all()
 
-    expect(h1_tags[0]).to_have_text("User: Sam Morgan")
+    expect(h1_tags[0]).to_have_text("Sam Morgan")
 
 def test_get_posts(page, test_web_address, db_connection):
     db_connection.seed('seeds/chitter_solo_project.sql')
