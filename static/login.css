@@ -15,7 +15,7 @@
     font-display: 'swap';
   }
 
-body {
+  body {
     background-color: #FEFBEA;
     display: grid;
     justify-items: center;
@@ -37,11 +37,6 @@ body {
     width: 8vw;
 }
 
-a:link {
-    color: white;
-    text-decoration: underline;
-  }
-
 #main_section {
     display: grid;
     justify-items: center;
@@ -50,17 +45,6 @@ a:link {
     height: 75vh;
     width: 75vw;
     border-radius: 30px;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto auto auto auto;
-    grid-row-gap: 100px;
-    grid-column-gap: 100px;
     overflow-y:scroll;
-}
-
-.post {
-    height: 5px;
-    width: 5px;
-    color: white;
-    font-size: 10px;
 }
 
