@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/static/all_posts.css">
     <title>All Posts</title>
   </head>
   <body>
-    {% for post in posts %}
-    <h1>Post: {{post.message}}</h1>
-    <a href="/users/{{post.user_id}}">Author</a>
-    <p>
-        Posted: {{post.time}}
-    </p>
-    {% endfor %}
+    <div>
+    <img id="header-img" src="https://keystoliteracy.com/wp-content/uploads/2020/01/twitter-logo-transparent-15-768x576.png" />
+    <header id="header">chitter</header>
+    </div>
+    <div id="main_section">
+      {% for post in posts %}
+      <h1>Post: {{post.message}}</h1>
+      <a href="/users/{{post.user_id}}">Author</a>
+      <p>
+          Posted: {{post.time}}
+      </p>
+      {% endfor %}
+    </div>
 
   </body>
 </html>
