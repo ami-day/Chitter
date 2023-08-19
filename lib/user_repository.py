@@ -22,3 +22,14 @@ class UserRepository():
         user.id = row[0]['id']
         return None
 
+    def check_password(self, username, password_attempt):
+
+        # Check whether there is a user in the database with the given username
+        # using a SELECT statement.
+        rows = self._connection.execute(
+            'SELECT * FROM users WHERE username = %s AND user_password = %s',
+            [username, password_attempt])
+
+        # If that SELECT finds any rows, the password is correct.
+        return len(rows) > 0
+

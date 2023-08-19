@@ -2,7 +2,7 @@ import os
 from lib.user import *
 from lib.user_repository import *
 from lib.post_repository import *
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
 
 # Create a new Flask app
@@ -63,6 +63,20 @@ def create_user():
     user = User(name_name, username, user_email, user_password, user_picture)
     repository.create(user)
     return redirect(f"/posts")
+
+@app.route('/login', methods=['POST'])
+def login_post():
+    connection = get_flask_database_connection(app)
+    repository = UserRepository(connection)
+    username = request.form['user_name1']
+    password_attempt = request.form['user_password1']
+    valid = repository.check_password(username, password_attempt)
+    if valid:
+        session['username'] = username
+        return render_template('posts/all.html')
+    else:
+        return render_template('login_error.html')
+    
 
 @app.route('/posts', methods=["POST"])
 def create_post():
