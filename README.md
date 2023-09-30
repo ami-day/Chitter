@@ -1,7 +1,7 @@
 <h1 align="center">Chitter</h1>
 
 <p align="center">
-In this solo project, I integrated a SQL database in Python using the psycopg package to create a small web application called Chitter.</p>
+In this solo project, I designed and integrated a SQL database in Python using the psycopg package to create a small web application called Chitter.</p>
 
 <p>Chitter is a web application where you can log-in as a user, post messages and view other Chitter users messages.</p>
 
